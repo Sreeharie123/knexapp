@@ -29,3 +29,5 @@ package-lock.json
 
 # upload directory
 uploads/
+src/database/migrations
+src/database/knexfile.ts
