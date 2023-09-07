@@ -1,17 +1,21 @@
 import { user } from '../../interface/userInterface';
-import { createUser } from './../models/user_model';
+import { registerUser } from './../models/user_model';
 import { Request, Response } from "express";
+import bcrypt from "bcrypt"
 
-export const User = async (req: Request, res: Response) => {
+
+export const createUser = async (req: Request, res: Response) => {
     try {
         const { name, email, password, is_admin } = req.body
+        const salt = await bcrypt.genSalt(10)
+        const hashPassword = await bcrypt.hash(password, salt)
         const data: user = {
             name,
             email,
-            password,
+            password: hashPassword,
             is_admin
         }
-        const user = await createUser(data)
+        const user = await registerUser(data)
         res.status(200).json({
             status: 200,
             message: "success",
