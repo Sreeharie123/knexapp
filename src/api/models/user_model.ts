@@ -3,7 +3,7 @@ import { user } from "../../interface/userInterface";
 
 //Register user
 export const registerUser = (data: user) => {
-    return db('user').insert(data).returning("*").then((result) => {
+    return db('user').insert(data).returning("*").then((result: user[]) => {
         if (result) return result[0];
         else null
     })
