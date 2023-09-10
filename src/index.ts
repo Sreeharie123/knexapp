@@ -2,7 +2,7 @@ import express from "express"
 import dotenv from "dotenv"
 import cors from "cors"
 import morgan from 'morgan'
-import { userRoute } from "./api/routes/user_route"
+import { authRoute } from "./api/routes/user_route"
 
 
 //env file configuration 
@@ -16,7 +16,7 @@ app.use(cors({ origin: "*" }))
 app.use(morgan('tiny'))
 
 //routes
-app.use('/api/auth/', userRoute)
+app.use('/api/auth/', authRoute)
 
 
 //Welcome to eazyevent
